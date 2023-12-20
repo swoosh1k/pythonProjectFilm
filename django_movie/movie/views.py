@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.decorators.cache import cache_page
 from django.views.generic import DetailView, ListView
 from .forms import ReviewForm, RatingForm
 from .models import *
@@ -17,7 +18,7 @@ class GenreYear:
     def get_years(self):
         return Movie.objects.filter(draft = False)
 
-
+@cache_page(60 * 15)
 class MoviesView(GenreYear, ListView, DataMixin):
     paginate_by = 1
     model = Movie
