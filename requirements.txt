@@ -1,0 +1,5 @@
+- django-spectacukar
+- pillow
+- django
+- simple-captcha
+- ckeditor
