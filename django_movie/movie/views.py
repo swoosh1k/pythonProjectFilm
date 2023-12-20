@@ -18,7 +18,7 @@ class GenreYear:
     def get_years(self):
         return Movie.objects.filter(draft = False)
 
-@cache_page(60 * 15)
+
 class MoviesView(GenreYear, ListView, DataMixin):
     paginate_by = 1
     model = Movie

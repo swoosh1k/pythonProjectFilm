@@ -3,7 +3,7 @@ from .views import *
 
 
 urlpatterns = [
-    path('', MoviesView.as_view()),
+    path('', cache_page(1000)(MoviesView.as_view()),
     path('search/', Search.as_view(), name = 'search'),
     path('filter/', FilterMovies.as_view(), name='filter'),
     path('add-rating/', AddStarRating.as_view(), name = 'add_rating'),
