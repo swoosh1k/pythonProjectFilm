@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'movie',
     'ckeditor',
+    "debug_toolbar",
     'ckeditor_uploader',
-    'captcha'
+    'captcha',
+    'drf_spectacular',
+
 ]
 
 MIDDLEWARE = [
@@ -53,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'django_movie.urls'
@@ -143,6 +147,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
+
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -207,4 +218,8 @@ CKEDITOR_CONFIGS = {
             'elementspath'
         ]),
     }
+}
+REST_FRAMEWORK = {
+    # ВАШИ НАСТРОЙКИ
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }

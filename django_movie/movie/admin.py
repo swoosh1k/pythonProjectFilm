@@ -7,6 +7,7 @@ from .models import *
 
 
 
+
 class MovieAdminForm(forms.ModelForm):
     description = forms.CharField(label = 'Описание', widget=CKEditorUploadingWidget())
     class Meta:
