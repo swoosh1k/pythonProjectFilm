@@ -7,8 +7,7 @@ from django.views.generic import DetailView, ListView
 from .forms import ReviewForm, RatingForm
 from .models import *
 from .utils import DataMixin
-
-
+from .tasks import print_time_task
 
 
 
@@ -27,6 +26,7 @@ class MoviesView(GenreYear, ListView, DataMixin):
     context_object_name = 'movies'
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+
         c_def = self.get_user_context(title = 'Главная страница')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -44,6 +44,7 @@ class MovieDetailView( DetailView, DataMixin):
         context['star_form'] = RatingForm
         c_def = self.get_user_context(title = Movie.title)
         return dict(list(context.items()) + list(c_def.items()))
+
 
 
 
